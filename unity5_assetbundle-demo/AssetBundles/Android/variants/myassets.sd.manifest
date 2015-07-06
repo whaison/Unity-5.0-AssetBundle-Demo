@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1449583135
+CRC: 1077023261
 Hashes:
   AssetFileHash:
     serializedVersion: 2
@@ -18,6 +18,6 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/TestAssets/VariantTest/MyAssets SD/myTexture.png
-- Assets/TestAssets/VariantTest/MyAssets SD/someMaterial.mat
+- Assets/ScriptsForAssetBundleSystem/TestAssets/VariantTest/MyAssets SD/myTexture.png
+- Assets/ScriptsForAssetBundleSystem/TestAssets/VariantTest/MyAssets SD/someMaterial.mat
 Dependencies: []

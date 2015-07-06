@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3268254489
+CRC: 773923457
 Hashes:
   AssetFileHash:
     serializedVersion: 2
@@ -16,6 +16,6 @@ ClassTypes:
 - Class: 48
   Script: {instanceID: 0}
 Assets:
-- Assets/TestAssets/CubeMyMaterial.mat
+- Assets/ScriptsForAssetBundleSystem/TestAssets/CubeMyMaterial.mat
 Dependencies:
 - AssetBundles/Android/texture.unity3d

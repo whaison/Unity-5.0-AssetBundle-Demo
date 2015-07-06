@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 319467198
+CRC: 835654023
 Hashes:
   AssetFileHash:
     serializedVersion: 2
@@ -46,6 +46,6 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/TestAssets/VariantTest/variant-scene.unity
+- Assets/ScriptsForAssetBundleSystem/TestAssets/VariantTest/variant-scene.unity
 Dependencies:
 - AssetBundles/Android/variants/myassets.hd

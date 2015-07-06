@@ -43,16 +43,27 @@ public class BaseLoader : MonoBehaviour {
 
 	public string GetRelativePath()
 	{
+		string serverPath = "";
+		serverPath="http://192.168.117.17/";
 		if (Application.isEditor)
-			//return "file://" +  System.Environment.CurrentDirectory.Replace("\\", "/"); // Use the build output folder directly.
+			{	//return "file://" +  System.Environment.CurrentDirectory.Replace("\\", "/"); // Use the build output folder directly.
 			//return Application.streamingAssetsPath;
-			return "http://192.168.117.10";
-		else if (Application.isWebPlayer)
-			return System.IO.Path.GetDirectoryName(Application.absoluteURL).Replace("\\", "/")+ "/StreamingAssets";
-		else if (Application.isMobilePlatform || Application.isConsolePlatform)
-			return Application.streamingAssetsPath;
+				//return "http://192.168.117.10";
+			return serverPath;
+		}else if (Application.isWebPlayer)
+			{	
+				//return System.IO.Path.GetDirectoryName(Application.absoluteURL).Replace("\\", "/")+ "/StreamingAssets";
+				return serverPath;
+		}else if (Application.isMobilePlatform || Application.isConsolePlatform)
+		{	
+				//return Application.streamingAssetsPath;
+				return serverPath;
+		}
 		else // For standalone player.
-			return "file://" +  Application.streamingAssetsPath;
+		{
+				//return "file://" +  Application.streamingAssetsPath;
+				return serverPath;
+		}
 	}
 
 #if UNITY_EDITOR

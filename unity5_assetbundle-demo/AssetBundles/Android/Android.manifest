@@ -26,3 +26,7 @@ AssetBundleManifest:
       Name: material.unity3d
       Dependencies:
         Dependency_0: texture.unity3d
+    Info_7:
+      Name: cubewithscript.unity3d
+      Dependencies:
+        Dependency_0: material.unity3d

@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2140769069
+CRC: 1022472531
 Hashes:
   AssetFileHash:
     serializedVersion: 2
@@ -40,6 +40,6 @@ ClassTypes:
 - Class: 157
   Script: {instanceID: 0}
 Assets:
-- Assets/TestAssets/testScene.unity
+- Assets/ScriptsForAssetBundleSystem/TestAssets/testScene.unity
 Dependencies:
 - AssetBundles/Android/material.unity3d

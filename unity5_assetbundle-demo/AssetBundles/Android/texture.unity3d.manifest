@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2242145378
+CRC: 1333383510
 Hashes:
   AssetFileHash:
     serializedVersion: 2
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
 Assets:
-- Assets/TestAssets/CubeUnityLogo.png
+- Assets/ScriptsForAssetBundleSystem/TestAssets/CubeUnityLogo.png
 Dependencies: []

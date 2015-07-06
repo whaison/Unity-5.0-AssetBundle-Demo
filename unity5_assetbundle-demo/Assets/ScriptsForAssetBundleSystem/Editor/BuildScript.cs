@@ -38,7 +38,7 @@ public class BuildScript
 
 		// Build and copy AssetBundles.
 		BuildScript.BuildAssetBundles();
-		BuildScript.CopyAssetBundlesTo(Path.Combine(Application.streamingAssetsPath, kAssetBundlesOutputPath) );
+		//BuildScript.CopyAssetBundlesTo(Path.Combine(Application.streamingAssetsPath, kAssetBundlesOutputPath) );
 
 		BuildOptions option = EditorUserBuildSettings.development ? BuildOptions.Development : BuildOptions.None;
 		BuildPipeline.BuildPlayer(levels, outputPath + targetName, EditorUserBuildSettings.activeBuildTarget, option);
