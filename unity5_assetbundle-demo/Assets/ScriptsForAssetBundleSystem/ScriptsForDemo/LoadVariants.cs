@@ -19,6 +19,6 @@ public class LoadVariants : BaseLoader {
 		yield return StartCoroutine(LoadLevel (variantSceneAssetBundle, variantSceneName, true) );
 		
 		// Unload assetBundles.
-		AssetBundleManager.ABM_07_UnloadAssetBundle(variantSceneAssetBundle);
+		AssetBundleManager.Instance.ABM_07_UnloadAssetBundle(variantSceneAssetBundle);
 	}
 }

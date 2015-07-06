@@ -5,7 +5,8 @@ public class LoadAssets : BaseLoader {
 
 	public string assetBundleName = "cubewithscript.unity3d";
 	public string assetName = "cubewithscript";
-
+	System.Object instanceRef;
+	GameObject instanceGameObject=new GameObject();
 	// Use this for initialization
 	IEnumerator Start () {
 
@@ -15,6 +16,6 @@ public class LoadAssets : BaseLoader {
 		yield return StartCoroutine(Load (assetBundleName, assetName) );
 
 		// Unload assetBundles.
-		AssetBundleManager.ABM_07_UnloadAssetBundle(assetBundleName);
+		AssetBundleManager.Instance.ABM_07_UnloadAssetBundle(assetBundleName);
 	}
 }

@@ -21,7 +21,7 @@ public class BaseLoader : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 		
 #if UNITY_EDITOR
-		Debug.Log ("-------BaceLoader.cs--------We are " + (AssetBundleManager.ABM_00_SimulateAssetBundleInEditor ? "in Editor simulation mode" : "in normal mode") );
+		//Debug.Log ("-------BaceLoader.cs--------We are " + (AssetBundleManager.Instance.ABM_00_SimulateAssetBundleInEditor ? "in Editor simulation mode" : "in normal mode") );
 #endif
 
 		string platformFolderForAssetBundles = 
@@ -36,7 +36,7 @@ public class BaseLoader : MonoBehaviour {
 		AssetBundleManager.BaseDownloadingURL = relativePath + kAssetBundlesPath + platformFolderForAssetBundles + "/";
 
 		// Initialize AssetBundleManifest which loads the AssetBundleManifest object.
-		var request = AssetBundleManager.ABM_02_Initialize(platformFolderForAssetBundles);
+		var request = AssetBundleManager.Instance.ABM_02_Initialize(platformFolderForAssetBundles);
 		if (request != null)
 			yield return StartCoroutine(request);
 	}
@@ -44,22 +44,21 @@ public class BaseLoader : MonoBehaviour {
 	public string GetRelativePath()
 	{
 		string serverPath = "";
-		serverPath="http://192.168.117.17/";
+		serverPath="http://192.168.117.17";
 		if (Application.isEditor)
-			{	//return "file://" +  System.Environment.CurrentDirectory.Replace("\\", "/"); // Use the build output folder directly.
+		{	//return "file://" +  System.Environment.CurrentDirectory.Replace("\\", "/"); // Use the build output folder directly.
 			//return Application.streamingAssetsPath;
 				//return "http://192.168.117.10";
 			return serverPath;
 		}else if (Application.isWebPlayer)
-			{	
+		{	
 				//return System.IO.Path.GetDirectoryName(Application.absoluteURL).Replace("\\", "/")+ "/StreamingAssets";
 				return serverPath;
 		}else if (Application.isMobilePlatform || Application.isConsolePlatform)
 		{	
 				//return Application.streamingAssetsPath;
 				return serverPath;
-		}
-		else // For standalone player.
+		}else // For standalone player.
 		{
 				//return "file://" +  Application.streamingAssetsPath;
 				return serverPath;
@@ -114,12 +113,12 @@ public class BaseLoader : MonoBehaviour {
 		}
 	}
 
-	protected IEnumerator Load (string assetBundleName, string assetName)
+	protected IEnumerator Load (string assetBundleName, string assetName )
 	{
 		Debug.Log("-------BaceLoader.cs---------Start to load " + assetName + " at frame " + Time.frameCount);
 
 		// Load asset from assetBundle.
-		AssetBundleLoadAssetOperation request = AssetBundleManager.ABM_10_LoadAssetAsync(assetBundleName, assetName, typeof(GameObject) );
+		AssetBundleLoadAssetOperation request = AssetBundleManager.Instance.ABM_10_LoadAssetAsync(assetBundleName, assetName, typeof(GameObject) );
 		if (request == null)
 			yield break;
 		yield return StartCoroutine(request);
@@ -131,7 +130,34 @@ public class BaseLoader : MonoBehaviour {
 
 		if (prefab != null)
 			Debug.Log(" ---------------BaceLoader.cs----------------- Instantiate  prefab="+prefab);
-			GameObject.Instantiate(prefab);
+		GameObject.Instantiate(prefab);
+		//instanceRef=GameObject.Instantiate(prefab);
+	}
+	protected IEnumerator LoadToInstance (string assetBundleName, string assetName )
+	{
+
+		Debug.Log("-------BaceLoader.cs---------Start to load " + assetName + " at frame " + Time.frameCount);
+
+		// Load asset from assetBundle.
+		AssetBundleLoadAssetOperation request = AssetBundleManager.Instance.ABM_10_LoadAssetAsync(assetBundleName, assetName, typeof(GameObject) );
+		if (request == null)
+			yield break;
+		yield return StartCoroutine(request);
+
+		Debug.Log(" -----------BaceLoader.cs------------request= "+request+"--- request.GetAsset<GameObject> ()="+request.GetAsset<GameObject> ());
+		// Get the asset.
+		GameObject prefab = request.GetAsset<GameObject> ();
+		Debug.Log(assetName + (prefab == null ? " isn't" : " is")+ " loaded successfully at frame " + Time.frameCount );
+
+		if (prefab != null)
+			Debug.Log(" ---------------BaceLoader.cs----------------- Instantiate  prefab="+prefab);
+
+		//GameObject.Instantiate(prefab);
+		GameObject instanceRef=GameObject.Instantiate(prefab);
+		instanceRef.transform.position = new Vector3 (-10000, -10000, 0);
+		////http://qiita.com/chiepomme/items/2bccc5c6f5b803df8e57      3. IEnumerator#Current を使用する
+		yield return instanceRef;
+		//instanceRef=GameObject.Instantiate(prefab);
 	}
 
 	protected IEnumerator LoadLevel (string assetBundleName, string levelName, bool isAdditive)

@@ -76,6 +76,30 @@ public class AssetBundleManager : MonoBehaviour
 	static List<AssetBundleLoadOperation> m_InProgressOperations = new List<AssetBundleLoadOperation> ();
 	static Dictionary<string, string[]> m_Dependencies = new Dictionary<string, string[]> ();
 
+
+	#region Singleton
+	private static AssetBundleManager instance = null;
+
+	public static AssetBundleManager Instance {
+		get {
+			if (instance == null) {
+				instance = FindObjectOfType<AssetBundleManager> ();
+			}
+			return instance;
+		}
+	}
+	#endregion
+
+	void Awake ()
+	{
+		if (this != Instance) {
+			Destroy (this.gameObject);
+			return;
+		}
+			
+	}
+
+
 	// The base downloading url which is used to generate the full downloading url with the assetBundle names.
 	public static string BaseDownloadingURL
 	{
@@ -129,7 +153,7 @@ public class AssetBundleManager : MonoBehaviour
 #endif
 
 	// Get loaded AssetBundle, only return vaild object when all the dependencies are downloaded successfully.
-	static public LoadedAssetBundle ABM_01_GetLoadedAssetBundle (string assetBundleName, out string error)
+	public LoadedAssetBundle ABM_01_GetLoadedAssetBundle (string assetBundleName, out string error)
 	{
 		Debug.Log ("--------------------ABM_01_GetLoadedAssetBundle-(assetBundleName="+assetBundleName+" error=)----------------");
 		if (m_DownloadingErrors.TryGetValue (assetBundleName, out error)) {
@@ -168,7 +192,7 @@ public class AssetBundleManager : MonoBehaviour
 	}
 
 	// Load AssetBundleManifest.
-	static public AssetBundleLoadManifestOperation ABM_02_Initialize (string manifestAssetBundleName)
+	public AssetBundleLoadManifestOperation ABM_02_Initialize (string manifestAssetBundleName)
 	{
 		var go = new GameObject("AssetBundleManager", typeof(AssetBundleManager));
 		DontDestroyOnLoad(go);
@@ -296,8 +320,8 @@ public class AssetBundleManager : MonoBehaviour
 	{
 		if (m_AssetBundleManifest == null)
 		{
-			Debug.LogError("--------------ABM_06_LoadDependencies----------AssetBundleManager.ABM_02_Initialize()を呼び出すことによってAssetBundleManifestを初期化してください。assetBundleName="+assetBundleName);
-			//AssetBundleManager.ABM_02_Initialize (assetBundleName);
+			Debug.LogError("--------------ABM_06_LoadDependencies----------AssetBundleManager.Instance.ABM_02_Initialize()を呼び出すことによってAssetBundleManifestを初期化してください。assetBundleName="+assetBundleName);
+			//AssetBundleManager.Instance.ABM_02_Initialize (assetBundleName);
 			return;
 		}
 
@@ -322,7 +346,7 @@ public class AssetBundleManager : MonoBehaviour
 	}
 
 	// Unload assetbundle and its dependencies.
-	static public void ABM_07_UnloadAssetBundle(string assetBundleName)
+	public void ABM_07_UnloadAssetBundle(string assetBundleName)
 	{
 #if UNITY_EDITOR
 		// If we're in Editor simulation mode, we don't have to load the manifest assetBundle.
@@ -360,7 +384,7 @@ public class AssetBundleManager : MonoBehaviour
 	{
 		Debug.Log ("------------ABM_09_UnloadAssetBundleInternal----------------------assetBundleName ="+assetBundleName );
 		string error;
-		LoadedAssetBundle bundle = ABM_01_GetLoadedAssetBundle(assetBundleName, out error);
+		LoadedAssetBundle bundle = AssetBundleManager.Instance.ABM_01_GetLoadedAssetBundle(assetBundleName, out error);
 		if (bundle == null)
 			Debug.Log ("------------ABM_09_UnloadAssetBundleInternal----------------------bundle ="+bundle );
 			return;
@@ -422,7 +446,7 @@ public class AssetBundleManager : MonoBehaviour
 	}
 
 	// Load asset from the given assetBundle.
-	static public AssetBundleLoadAssetOperation ABM_10_LoadAssetAsync (string assetBundleName, string assetName, System.Type type)
+	public AssetBundleLoadAssetOperation ABM_10_LoadAssetAsync (string assetBundleName, string assetName, System.Type type)
 	{
 		Debug.Log ("------------ABM_10_LoadAssetAsync----------------------assetBundleName ="+assetBundleName+" assetName= "+assetName +" type="+type);
 		AssetBundleLoadAssetOperation operation = null;

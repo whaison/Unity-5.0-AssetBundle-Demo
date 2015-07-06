@@ -61,8 +61,8 @@ public class AssetBundleLoadLevelOperation : AssetBundleLoadOperation
 		if (m_Request != null)
 			return false;
 		
-		//LoadedAssetBundle bundle = AssetBundleManager.ABM_01_GetLoadedAssetBundle (m_AssetBundleName, out m_DownloadingError);
-		LoadedAssetBundle bundle = AssetBundleManager.ABM_01_GetLoadedAssetBundle(m_AssetBundleName,out m_DownloadingError);
+		//LoadedAssetBundle bundle = AssetBundleManager.Instance.ABM_01_GetLoadedAssetBundle (m_AssetBundleName, out m_DownloadingError);
+		LoadedAssetBundle bundle = AssetBundleManager.Instance.ABM_01_GetLoadedAssetBundle(m_AssetBundleName,out m_DownloadingError);
 		if (bundle != null)
 		{
 			if (m_IsAdditive)
@@ -148,7 +148,7 @@ public class AssetBundleLoadAssetOperationFull : AssetBundleLoadAssetOperation
 		if (m_Request != null)
 			return false;
 
-		LoadedAssetBundle bundle = AssetBundleManager.ABM_01_GetLoadedAssetBundle (m_AssetBundleName, out m_DownloadingError);
+		LoadedAssetBundle bundle = AssetBundleManager.Instance.ABM_01_GetLoadedAssetBundle (m_AssetBundleName, out m_DownloadingError);
 		if (bundle != null)
 		{
 			m_Request = bundle.m_AssetBundle.LoadAssetAsync (m_AssetName, m_Type);

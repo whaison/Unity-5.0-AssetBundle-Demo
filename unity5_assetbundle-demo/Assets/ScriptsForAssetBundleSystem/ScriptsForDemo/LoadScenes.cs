@@ -17,6 +17,6 @@ public class LoadScenes : BaseLoader {
 		yield return StartCoroutine(LoadLevel (sceneAssetBundle, sceneName, loadLevelAdditive) );
 
 		// Unload assetBundles.
-		AssetBundleManager.ABM_07_UnloadAssetBundle(sceneAssetBundle);
+		AssetBundleManager.Instance.ABM_07_UnloadAssetBundle(sceneAssetBundle);
 	}
 }
