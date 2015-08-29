@@ -1,0 +1,27 @@
+ManifestFileVersion: 0
+CRC: 4247302661
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 91c2f5fbb27e588dfed069189842af42
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ba8399fbd4f97ea7fdbfc7e7ee37de55
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 81
+  Script: {instanceID: 0}
+- Class: 92
+  Script: {instanceID: 0}
+- Class: 124
+  Script: {instanceID: 0}
+Assets:
+- Assets/MyServerData/AssetBundles/Folder1st/Folder2nd/Folder3rd/my_67890_prefab.prefab
+- Assets/MyServerData/AssetBundles/Folder1st/Folder2nd/Folder3rd/my_12345_prefab.prefab
+Dependencies: []

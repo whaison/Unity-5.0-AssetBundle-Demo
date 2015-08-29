@@ -30,3 +30,6 @@ AssetBundleManifest:
       Name: cubewithscript.unity3d
       Dependencies:
         Dependency_0: material.unity3d
+    Info_8:
+      Name: folder1st/folder2nd/folder3rd.unity3d
+      Dependencies: {}

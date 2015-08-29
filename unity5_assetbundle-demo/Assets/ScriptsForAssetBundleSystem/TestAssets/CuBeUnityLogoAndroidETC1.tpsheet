@@ -1,0 +1,11 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: CuBeUnityLogoAndroidETC1.pkm (256 x 256)
+# $TexturePacker:SmartUpdate:f761faae0a20b21c3f88e9e5a26eca37:f872c37bea3bfc0354bd0682586c38c0:023edd926b6134d789f385588a785435$
+#
+
+CubeUnityLogo;2;94;162;160;0.5;0.5
